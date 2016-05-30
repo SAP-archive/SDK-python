@@ -1,0 +1,2 @@
+class RecastError(Exception):
+  pass
