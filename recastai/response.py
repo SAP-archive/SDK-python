@@ -30,7 +30,7 @@ class Response(object):
   def get(self, name):
     for sentence in self.sentences:
       for entity in sentence.entities:
-        if (entity.name.lower() is name.lower()):
+        if (entity.name.lower() == name.lower()):
           return entity
 
 
@@ -39,7 +39,7 @@ class Response(object):
 
     for sentence in self.sentences:
       for entity in sentence.entities:
-        if (name is None) or (entity.name.lower() is name.lower()):
-          entities << entity
+        if (name is None) or (entity.name.lower() == name.lower()):
+          entities.append(entity)
 
     return entities
