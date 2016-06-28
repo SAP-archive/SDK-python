@@ -1,10 +1,12 @@
+# -*- coding: utf-8 -*-
+
 class Utils(object):
-	# Versioning
+	"""Versioning"""
 	MAJOR = '1'
 	MINOR = '0'
-	MICRO = '2'
+	MICRO = '0'
 	VERSION = "{0}.{1}.{2}".format(MAJOR, MINOR, MICRO)
 
-	# Endpoints
+	"""Endpoints"""
 	API_ENDPOINT = 'https://api.recast.ai/v1/request'
 	WS_ENDPOINT  = 'wss://api.recast.ai/v1/request'

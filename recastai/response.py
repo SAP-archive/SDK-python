@@ -1,5 +1,8 @@
+# -*- coding: utf-8 -*-
+
 import json
-from recastai import sentence
+
+from .sentence import Sentence
 
 class Response(object):
   def __init__(self, response):
@@ -11,6 +14,7 @@ class Response(object):
     self.source = response['source']
     self.intents = response['intents']
     self.sentences = [Sentence(s) for s in response['sentences']]
+    self.language = response['language']
     self.version = response['version']
     self.timestamp = response['timestamp']
     self.status = response['status']
@@ -33,13 +37,21 @@ class Response(object):
         if (entity.name.lower() == name.lower()):
           return entity
 
-
   def all(self, name=None):
     entities = []
 
     for sentence in self.sentences:
       for entity in sentence.entities:
-        if (name is None) or (entity.name.lower() == name.lower()):
+        if (name is not None) and (entity.name.lower() == name.lower()):
           entities.append(entity)
+
+    return entities
+
+  def entities(self):
+    entities = []
+
+    for sentence in self.sentences:
+      for entity in sentence.entities:
+        entities.append(entity)
 
     return entities
