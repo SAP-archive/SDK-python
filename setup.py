@@ -6,7 +6,7 @@ setup(
     version=Utils.VERSION,
     py_modules=["recastai"],
     description="Recast.AI official SDK for python",
-    author="Paul Renvoisé",
+    author="Paul Renvoise",
     author_email="paul.renvoise@recast.ai",
     url="https://github.com/RecastAI/sdk-python",
     long_description=open('README.md').read())
