@@ -71,7 +71,7 @@ If no language is provided in the request, Recast.AI does the following:
 * text_request: the language of the text is detected and is used for processing if your bot has expressions for it, else your bot's primary language is used for processing.
 * voice_request: your bot's primary language is used for processing as we do not provide language detection for speech.
 
-*Accepted options are :token, :language, to override the defaults provided at initialization*
+*Accepted options are token, language, to override the defaults provided at initialization*
 
 ```python
 import recastai
@@ -79,13 +79,13 @@ import recastai
 client = Client(YOUR_TOKEN, YOUR_LANGUAGE)
 
 """Performs a text request on Recast.AI"""
-response = client.text_request(YOUR_TEXT, {'token':YOUR_TOKEN, 'language':YOUR_LANGUAGE})
+response = client.text_request(YOUR_TEXT, token=YOUR_TOKEN, language=YOUR_LANGUAGE)
 
 if response.intent == YOUR_EXPECTED_INTENT:
   """Do your code..."""
 
 """Performs a voice file request on Recast.AI""
-response = client.file_request(open(YOUR_FILE, 'rb'), {'token':YOUR_TOKEN, 'language':YOUR_LANGUAGE })
+response = client.file_request(open(YOUR_FILE, 'rb'), token=YOUR_TOKEN, language=YOUR_LANGUAGE)
 
 if response.intent == YOUR_EXPECTED_INTENT:
   """Do your code..."""
