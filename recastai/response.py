@@ -4,6 +4,7 @@ import json
 
 from .sentence import Sentence
 
+
 class Response(object):
   def __init__(self, response):
     self.raw = response
@@ -37,12 +38,12 @@ class Response(object):
         if (entity.name.lower() == name.lower()):
           return entity
 
-  def all(self, name=None):
+  def all(self, name):
     entities = []
 
     for sentence in self.sentences:
       for entity in sentence.entities:
-        if (name is not None) and (entity.name.lower() == name.lower()):
+        if (entity.name.lower() == name.lower()):
           entities.append(entity)
 
     return entities

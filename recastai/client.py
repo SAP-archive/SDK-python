@@ -6,6 +6,7 @@ from .response import Response
 from .errors import RecastError
 from .utils import Utils
 
+
 class Client(object):
   def __init__(self, token=None, language=None):
     self.token = token
@@ -26,13 +27,11 @@ class Client(object):
       body['language'] = language
 
     response = requests.post(Utils.API_ENDPOINT,
-        params=body,
-        headers={'Authorization': "Token " + token}
-        )
+                             params=body,
+                             headers={'Authorization': "Token " + token})
     if response.status_code != requests.codes.ok:
-      raise RecastError(response.message)
+      raise RecastError(response.reason)
 
-    print(response.text)
     return Response(response.text)
 
   """
@@ -40,7 +39,7 @@ class Client(object):
   """
   def file_request(self, file, **options):
     token = options.get('token') or self.token
-    if token == None:
+    if token is None:
       raise RecastError("Token is missing")
 
     language = options.get('language') or self.language
@@ -51,10 +50,9 @@ class Client(object):
       body['language'] = language
 
     response = requests.post(Utils.API_ENDPOINT,
-        files=body,
-        headers={'Authorization': "Token " + token}
-        )
+                             files=body,
+                             headers={'Authorization': "Token " + token})
     if response.status_code != requests.codes.ok:
-      raise RecastError(response.message)
+      raise RecastError(response.reason)
 
     return Response(response.text)
