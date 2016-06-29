@@ -3,6 +3,7 @@
 from recastai import Sentence
 from recastai import Entity
 
+
 class TestSentence(object):
   def test_instanciable(self):
     Sentence({'source': "What's the weather in London?", 'type': 'what', 'action': 'be', 'agent': 'the weather in london', 'polarity': 'positive', 'entities': {'location': [{'formated': 'London, London, Greater London, England, United Kingdom', 'lat': 51.5073509, 'lng': -0.1277583, 'raw': 'London'}]}})

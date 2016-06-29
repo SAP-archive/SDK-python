@@ -7,14 +7,12 @@ Recast.AI official SDK for Python.
 
 ## Synospis
 
-!! This is still a work in progress, do not use it yet !!
-
 This library is a pure Python interface to the [Recast.AI](https://recast.ai) API. It allows you to make requests to your bots.
 
 
 ## Requirements
 
-*
+* python 2.7+
 
 
 ## Installation
@@ -33,7 +31,7 @@ pip install recastai
 ### Gem
 
 ```python
-import recastai
+from recastai import Client
 
 client = Client(YOUR_TOKEN, YOUR_LANGUAGE)
 response = client.text_request(YOUR_TEXT)
@@ -74,7 +72,7 @@ If no language is provided in the request, Recast.AI does the following:
 *Accepted options are token, language, to override the defaults provided at initialization*
 
 ```python
-import recastai
+from recastai import Client
 
 client = Client(YOUR_TOKEN, YOUR_LANGUAGE)
 
@@ -84,7 +82,7 @@ response = client.text_request(YOUR_TEXT, token=YOUR_TOKEN, language=YOUR_LANGUA
 if response.intent == YOUR_EXPECTED_INTENT:
   """Do your code..."""
 
-"""Performs a voice file request on Recast.AI""
+"""Performs a voice file request on Recast.AI"""
 response = client.file_request(open(YOUR_FILE, 'rb'), token=YOUR_TOKEN, language=YOUR_LANGUAGE)
 
 if response.intent == YOUR_EXPECTED_INTENT:
@@ -112,7 +110,7 @@ The Recast.AI Response is generated after a call with the two previous methods a
 ```python
 response = client.text_request('Give me some recipes with potatoes. And cheese.')
 
-# Get the first sentence, aka 'Give me some recipes with potatoes'
+"""Get the first sentence, aka 'Give me some recipes with potatoes'"""
 first_sentence = response.sentence()
 
 """If the first intent matched 'recipe'..."""

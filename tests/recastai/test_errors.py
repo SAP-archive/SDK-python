@@ -2,6 +2,7 @@
 
 from recastai import RecastError
 
+
 class TestRecastError(object):
   def test_instanciable(self):
     RecastError('error')
