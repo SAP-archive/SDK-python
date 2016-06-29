@@ -17,12 +17,32 @@ This library is a pure Python interface to the [Recast.AI](https://recast.ai) AP
 
 ## Installation
 
+### Via requirements.txt
+
+From [pypi](https://pypi.python.org/pypi/pip)
+
+```bash
+recastai==1.0.0
+```
+
+From [github](https://github.com)
+
+```bash
+git+https://github.com/RecastAI/sdk-python.git#egg=recastai
+```
+
 ### Via Terminal
 
-From [pip](https://pypi.python.org/pypi/pip):
+From [pypi](https://pypi.python.org/pypi/pip):
 
 ```bash
 pip install recastai
+```
+
+From [github](https://github.com)
+
+```bash
+pip install git+https://github.com/RecastAI/sdk-python.git
 ```
 
 
