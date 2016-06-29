@@ -1,8 +1,9 @@
 from setuptools import setup
+from recastai.utils import Utils
 
 setup(
     name="recastai",
-    version='1.0.0',
+    version=Utils.VERSION,
     py_modules=["recastai"],
     description="Recast.AI official SDK for python",
     author="Paul Renvoisé",
