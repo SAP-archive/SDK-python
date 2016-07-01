@@ -5,7 +5,7 @@ class Utils(object):
   """Versioning"""
   MAJOR = '1'
   MINOR = '0'
-  MICRO = '0'
+  MICRO = '2'
   VERSION = "{0}.{1}.{2}".format(MAJOR, MINOR, MICRO)
 
   """Endpoints"""
