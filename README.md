@@ -48,7 +48,7 @@ pip install git+https://github.com/RecastAI/sdk-python.git
 
 ## Usage
 
-### Gem
+### Package
 
 ```python
 from recastai import Client
