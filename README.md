@@ -51,9 +51,9 @@ pip install git+https://github.com/RecastAI/sdk-python.git
 ### Package
 
 ```python
-from recastai import Client
+import recastai
 
-client = Client(YOUR_TOKEN, YOUR_LANGUAGE)
+client = recastai.Client(YOUR_TOKEN, YOUR_LANGUAGE)
 response = client.text_request(YOUR_TEXT)
 """response = client.file_request(open(YOUR_FILE, 'rb'))"""
 
@@ -92,9 +92,9 @@ If no language is provided in the request, Recast.AI does the following:
 *Accepted options are token, language, to override the defaults provided at initialization*
 
 ```python
-from recastai import Client
+import recastai
 
-client = Client(YOUR_TOKEN, YOUR_LANGUAGE)
+client = recastai.Client(YOUR_TOKEN, YOUR_LANGUAGE)
 
 """Performs a text request on Recast.AI"""
 response = client.text_request(YOUR_TEXT, token=YOUR_TOKEN, language=YOUR_LANGUAGE)
