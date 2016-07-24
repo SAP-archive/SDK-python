@@ -1,54 +1,56 @@
-# -*- coding: utf-8 -*-
+# coding: utf-8
 
 import json
 from recastai import Response
-from recastai import Sentence
+from recastai import Intent
+from recastai import Entity
 
 
 class TestResponse(object):
   def test_instanciable(self):
-    Response(json.dumps({'results': {'source': "What's the weather in London?", 'intents': ['test'], 'sentences': [{'source': "What's the weather in London?", 'type': 'what', 'action': 'be', 'agent': 'the weather in london', 'polarity': 'positive', 'entities': {'location': [{'formated': 'London, London, Greater London, England, United Kingdom', 'lat': 51.5073509, 'lng': -0.1277583, 'raw': 'London'}]}}], 'language': 'en', 'version': '1.3.0', 'timestamp': '2016-05--1T17:33:00+02:00', 'status': 200}, 'message': 'Requests rendered with success.'}))
+    Response(json.dumps({'results': {'source': 'What is the weather in London tomorrow? And in Paris?', 'intents': [{'name': 'weather', 'confidence': 0.67}], 'act': 'wh-query', 'type': 'desc:desc', 'polarity': 'positive', 'sentiment': 'neutral', 'entities': {'action': [{ 'agent': 'the weather in London', 'tense': 'present', 'raw': 'is', 'confidence': 0.89}], 'location': [{'formated': 'London, London, Greater London, England, United Kingdom', 'lat': 51.5073509, 'lng': -0.1277583, 'raw': 'London', 'confidence': 0.97}, {'formated': 'Paris, Paris, Île-de-France, France', 'lat': 48.856614, 'lng': 2.3522219, 'raw': 'Paris', 'confidence': 0.83}], 'datetime': [{'value': '2016-07-11T10:00:00+00:00', 'raw': 'tomorrow', 'confidence': 0.95 }]}, 'language': 'en', 'version': '2.0.0', 'timestamp': '2016-07-10T23:17:59+02:00', 'status': 200}, 'message': 'Requests rendered with success'}))
 
   def test_attributes(self):
-    response = Response(json.dumps({'results': {'source': "What's the weather in London?", 'intents': ['test'], 'sentences': [{'source': "What's the weather in London?", 'type': 'what', 'action': 'be', 'agent': 'the weather in london', 'polarity': 'positive', 'entities': {'location': [{'formated': 'London, London, Greater London, England, United Kingdom', 'lat': 51.5073509, 'lng': -0.1277583, 'raw': 'London'}]}}], 'language': 'en', 'version': '1.3.0', 'timestamp': '2016-05--1T17:33:00+02:00', 'status': 200}, 'message': 'Requests rendered with success.'}))
+    response = Response(json.dumps({'results': {'source': 'What is the weather in London tomorrow? And in Paris?', 'intents': [{'name': 'weather', 'confidence': 0.67}], 'act': 'wh-query', 'type': 'desc:desc', 'polarity': 'positive', 'sentiment': 'neutral', 'entities': {'action': [{ 'agent': 'the weather in London', 'tense': 'present', 'raw': 'is', 'confidence': 0.89}], 'location': [{'formated': 'London, London, Greater London, England, United Kingdom', 'lat': 51.5073509, 'lng': -0.1277583, 'raw': 'London', 'confidence': 0.97}, {'formated': 'Paris, Paris, Île-de-France, France', 'lat': 48.856614, 'lng': 2.3522219, 'raw': 'Paris', 'confidence': 0.83}], 'datetime': [{'value': '2016-07-11T10:00:00+00:00', 'raw': 'tomorrow', 'confidence': 0.95 }]}, 'language': 'en', 'version': '2.0.0', 'timestamp': '2016-07-10T23:17:59+02:00', 'status': 200}, 'message': 'Requests rendered with success'}))
 
-    assert(response.raw == json.dumps({'results': {'source': "What's the weather in London?", 'intents': ['test'], 'sentences': [{'source': "What's the weather in London?", 'type': 'what', 'action': 'be', 'agent': 'the weather in london', 'polarity': 'positive', 'entities': {'location': [{'formated': 'London, London, Greater London, England, United Kingdom', 'lat': 51.5073509, 'lng': -0.1277583, 'raw': 'London'}]}}], 'language': 'en', 'version': '1.3.0', 'timestamp': '2016-05--1T17:33:00+02:00', 'status': 200}, 'message': 'Requests rendered with success.'}))
-    assert(response.source == "What's the weather in London?")
+    assert(response.raw == json.dumps({'results': {'source': 'What is the weather in London tomorrow? And in Paris?', 'intents': [{'name': 'weather', 'confidence': 0.67}], 'act': 'wh-query', 'type': 'desc:desc', 'polarity': 'positive', 'sentiment': 'neutral', 'entities': {'action': [{ 'agent': 'the weather in London', 'tense': 'present', 'raw': 'is', 'confidence': 0.89}], 'location': [{'formated': 'London, London, Greater London, England, United Kingdom', 'lat': 51.5073509, 'lng': -0.1277583, 'raw': 'London', 'confidence': 0.97}, {'formated': 'Paris, Paris, Île-de-France, France', 'lat': 48.856614, 'lng': 2.3522219, 'raw': 'Paris', 'confidence': 0.83}], 'datetime': [{'value': '2016-07-11T10:00:00+00:00', 'raw': 'tomorrow', 'confidence': 0.95 }]}, 'language': 'en', 'version': '2.0.0', 'timestamp': '2016-07-10T23:17:59+02:00', 'status': 200}, 'message': 'Requests rendered with success'}))
+    assert(response.source == 'What is the weather in London tomorrow? And in Paris?')
     assert(type(response.intents) is list)
-    assert(response.intents == ['test'])
-    assert(type(response.sentences) is list)
-    assert(type(response.sentences[0]) is Sentence)
+    assert(type(response.intents[0]) is Intent)
+    assert(response.act == 'wh-query')
+    assert(response.type == 'desc:desc')
+    assert(response.polarity == 'positive')
+    assert(response.sentiment == 'neutral')
+    assert(type(response.entities) is list)
+    assert(type(response.entities[0]) is Entity)
     assert(response.language == 'en')
-    assert(response.version == '1.3.0')
-    assert(response.timestamp == '2016-05--1T17:33:00+02:00')
+    assert(response.version == '2.0.0')
+    assert(response.timestamp == '2016-07-10T23:17:59+02:00')
     assert(response.status == 200)
 
   def test_helpers(self):
-    response = Response(json.dumps({'results': {'source': "What's the weather in London?", 'intents': ['test'], 'sentences': [{'source': "What's the weather in London?", 'type': 'what', 'action': 'be', 'agent': 'the weather in london', 'polarity': 'positive', 'entities': {'location': [{'formated': 'London, London, Greater London, England, United Kingdom', 'lat': 51.5073509, 'lng': -0.1277583, 'raw': 'London'}]}}], 'language': 'en', 'version': '1.3.0', 'timestamp': '2016-05--1T17:33:00+02:00', 'status': 200}, 'message': 'Requests rendered with success.'}))
+    response = Response(json.dumps({'results': {'source': 'What is the weather in London tomorrow? And in Paris?', 'intents': [{'name': 'weather', 'confidence': 0.67}], 'act': 'wh-query', 'type': 'desc:desc', 'polarity': 'positive', 'sentiment': 'neutral', 'entities': {'action': [{ 'agent': 'the weather in London', 'tense': 'present', 'raw': 'is', 'confidence': 0.89}], 'location': [{'formated': 'London, London, Greater London, England, United Kingdom', 'lat': 51.5073509, 'lng': -0.1277583, 'raw': 'London', 'confidence': 0.97}, {'formated': 'Paris, Paris, Île-de-France, France', 'lat': 48.856614, 'lng': 2.3522219, 'raw': 'Paris', 'confidence': 0.83}], 'datetime': [{'value': '2016-07-11T10:00:00+00:00', 'raw': 'tomorrow', 'confidence': 0.95 }]}, 'language': 'en', 'version': '2.0.0', 'timestamp': '2016-07-10T23:17:59+02:00', 'status': 200}, 'message': 'Requests rendered with success'}))
 
     assert(response.intent() == response.intents[0])
-    assert(response.sentence() == response.sentences[0])
     entity = None
-    for s in response.sentences:
-      for e in s.entities:
-        if e.name.lower() == 'location':
-          entity = e
-          break
+    for e in response.entities:
+      if e.name.lower() == 'location':
+        entity = e
+        break
     assert(response.get('location') == entity)
     entities = []
-    for s in response.sentences:
-      for e in s.entities:
-        if e.name.lower() == 'location':
-          entities.append(e)
+    for e in response.entities:
+      if e.name.lower() == 'location':
+        entities.append(e)
     assert(response.all('location') == entities)
-    entities = []
-    for s in response.sentences:
-      for e in s.entities:
-          entities.append(e)
-    assert(response.entities() == entities)
+    assert(response.is_assert() == False)
+    assert(response.is_command() == False)
+    assert(response.is_wh_query() == True)
+    assert(response.is_yn_query() == False)
+    assert(response.is_positive() == False)
+    assert(response.is_neutral() == True)
+    assert(response.is_negative() == False)
 
   def test_missing_array(self):
-    response = Response(json.dumps({'results': {'source': "What's the weather in London?", 'intents': [], 'sentences': [], 'language': 'en', 'version': '1.3.0', 'timestamp': '2016-05--1T17:33:00+02:00', 'status': 200}, 'message': 'Requests rendered with success.'}))
-
+    response = Response(json.dumps({'results': {'source': 'What is the weather in London tomorrow? And in Paris?', 'intents': [], 'act': 'wh-query', 'type': 'desc:desc', 'polarity': 'positive', 'sentiment': 'neutral', 'entities': {'action': [{ 'agent': 'the weather in London', 'tense': 'present', 'raw': 'is', 'confidence': 0.89}], 'location': [{'formated': 'London, London, Greater London, England, United Kingdom', 'lat': 51.5073509, 'lng': -0.1277583, 'raw': 'London', 'confidence': 0.97}, {'formated': 'Paris, Paris, Île-de-France, France', 'lat': 48.856614, 'lng': 2.3522219, 'raw': 'Paris', 'confidence': 0.83}], 'datetime': [{'value': '2016-07-11T10:00:00+00:00', 'raw': 'tomorrow', 'confidence': 0.95 }]}, 'language': 'en', 'version': '2.0.0', 'timestamp': '2016-07-10T23:17:59+02:00', 'status': 200}, 'message': 'Requests rendered with success'}))
     assert(response.intent() is None)
-    assert(response.sentence() is None)
