@@ -5,10 +5,10 @@ from recastai import Entity
 
 class TestEntity(object):
   def test_instanciable(self):
-    Entity('location', {'formated': 'London, London, Greater London, England, United Kingdom', 'lat': 51.5073509, 'lng': -0.1277583,'raw': 'London', 'confidence': 0.97})
+    Entity('location', {'formated': 'London, London, Greater London, England, United Kingdom', 'lat': 51.5073509, 'lng': -0.1277583, 'raw': 'London', 'confidence': 0.97})
 
   def test_attributes(self):
-    entity = Entity('location', {'formated': 'London, London, Greater London, England, United Kingdom', 'lat': 51.5073509, 'lng': -0.1277583,'raw': 'London', 'confidence': 0.97})
+    entity = Entity('location', {'formated': 'London, London, Greater London, England, United Kingdom', 'lat': 51.5073509, 'lng': -0.1277583, 'raw': 'London', 'confidence': 0.97})
 
     assert(entity.name == 'location')
     assert(entity.formated == 'London, London, Greater London, England, United Kingdom')
