@@ -123,7 +123,13 @@ The Recast.AI Response is generated after a call with the two previous methods a
 * is_wh_query(\*) *Returns whether or not the act is a wh-query*
 * is_yn_query(\*) *Returns whether or not the act is a yn-query*
 * type *Returns the type of the processed sentence*
-* polarity *Returns the polarity of the processed sentence*
+* is_abbreviation(\*) *Returns whether or not the sentence is asking for an abbreviation*
+* is_entity(\*) *Returns whether or not the sentence is asking for an entity*
+* is_description(\*) *Returns whether or not the sentence is asking for a description*
+* is_human(\*) *Returns whether or not the sentence is asking for a human*
+* is_location(\*) *Returns whether or not the sentence is asking for a location*
+* is_number(\*) *Returns whether or not the sentence is asking for a number*
+* negated *Returns whether or not the sentence is negated*
 * sentiment *Returns the sentiment of the processed sentence*
 * is_positive(\*) *Returns whether or not the sentiment is positive*
 * is_neutral(\*) *Returns whether or not the sentiment is neutral*

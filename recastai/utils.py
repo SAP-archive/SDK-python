@@ -18,6 +18,14 @@ class Utils(object):
   ACT_WH_QUERY = 'wh-query'
   ACT_YN_QUERY = 'yn-query'
 
+  """Type constants"""
+  TYPE_ABBREVIATION = 'abbr:'
+  TYPE_ENTITY = 'enty:'
+  TYPE_DESCRIPTION = 'desc:'
+  TYPE_HUMAN = 'hum:'
+  TYPE_LOCATION = 'loc:'
+  TYPE_NUMBER = 'num:'
+
   """Sentiment constants"""
   SENTIMENT_POSITIVE = 'positive'
   SENTIMENT_NEUTRAL = 'neutral'

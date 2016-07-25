@@ -18,7 +18,7 @@ class Response(object):
     self.intents = [Intent(i) for i in response['intents']]
     self.act = response['act']
     self.type = response['type']
-    self.polarity = response['polarity']
+    self.negated = response['negated']
     self.sentiment = response['sentiment']
     self.entities = [Entity(n, ee) for n, e in response['entities'].items() for ee in e]
     self.language = response['language']
@@ -57,6 +57,27 @@ class Response(object):
 
   def is_yn_query(self):
     return self.act == Utils.ACT_YN_QUERY
+
+  def is_abbreviation(self):
+    return Utils.TYPE_ABBREVIATION in self.type
+
+  def is_entity(self):
+    return Utils.TYPE_ENTITY in self.type
+
+  def is_description(self):
+    return Utils.TYPE_DESCRIPTION in self.type
+
+  def is_human(self):
+    return Utils.TYPE_HUMAN in self.type
+
+  def is_location(self):
+    return Utils.TYPE_LOCATION in self.type
+
+  def is_number(self):
+    return Utils.TYPE_NUMBER in self.type
+
+  def is_negated(self):
+    return False if self.negated == 0 else True
 
   def is_positive(self):
     return self.sentiment == Utils.SENTIMENT_POSITIVE
