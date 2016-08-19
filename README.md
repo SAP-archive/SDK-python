@@ -1,4 +1,4 @@
-# RecastAI - Python SDK
+# Recast.AI - Python SDK
 
 ![logo](https://raw.githubusercontent.com/RecastAI/SDK-python/master/misc/logo-inline.png "Recast.AI")
 
