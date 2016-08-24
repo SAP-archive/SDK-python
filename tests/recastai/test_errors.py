@@ -8,6 +8,6 @@ class TestRecastError(object):
     RecastError('error')
 
   def test_message(self):
-    error = RecastError('error')
+    e = RecastError('error')
 
-    assert(error.message == 'error')
+    assert(str(e) == 'error')
