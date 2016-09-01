@@ -10,7 +10,7 @@ with open(path.join(here, 'README.md'), 'r', 'utf-8') as f:
 
 setup(
     name="recastai",
-    version="1.1.0",
+    version="1.1.1",
     packages=find_packages(),
     description="Recast.AI official SDK for python",
     long_description=readme,
@@ -18,4 +18,10 @@ setup(
     author_email="paul.renvoise@recast.ai",
     url="https://github.com/RecastAI/sdk-python",
     license="MIT",
+    install_requires=[
+      "requests>=2.10",
+      "pytest>=2.9",
+      "pytest-cov>=2.2",
+      "responses>=0.5"
+    ],
     keywords="recastai bot nlp")
