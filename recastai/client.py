@@ -16,21 +16,21 @@ class Client(object):
   """
   Perform a text request to Recast.AI
   """
-  def text_request(self, text, token=None, language=None):
+  def text_request(self, text, token=None, language=None, endpoint=None):
     token = token or self.token
     if token is None:
       raise RecastError("Token is missing")
 
     language = language or self.language
+    endpoint = endpoint or Utils.API_ENDPOINT
 
     body = { 'text': text }
     if language is not None:
       body['language'] = language
 
-    response = requests.post(Utils.API_ENDPOINT,
-                             json=body,
-                             headers={ 'Authorization': "Token {}".format(token) })
-
+    response = requests.post(endpoint,
+                             params=body,
+                             headers={'Authorization': "Token {}".format(token)})
     if response.status_code != requests.codes.ok:
       raise RecastError(response.reason)
 
@@ -39,19 +39,20 @@ class Client(object):
   """
   Perform a file request to Recast.AI
   """
-  def file_request(self, filename, token=None, language=None):
+  def file_request(self, filename, token=None, language=None, endpoint=None):
     token = token or self.token
     if token is None:
       raise RecastError("Token is missing")
 
     language = language or self.language
+    endpoint = endpoint or Utils.API_ENDPOINT
 
     filename = open(filename, 'rb') if not isinstance(filename, io.IOBase) else filename
     body = { 'voice': filename }
     if language is not None:
       body['language'] = language
 
-    response = requests.post(Utils.API_ENDPOINT,
+    response = requests.post(endpoint,
                              files=body,
                              headers={ 'Authorization': "Token {}".format(token) })
     if response.status_code != requests.codes.ok:
