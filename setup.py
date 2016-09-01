@@ -18,4 +18,10 @@ setup(
     author_email="paul.renvoise@recast.ai",
     url="https://github.com/RecastAI/sdk-python",
     license="MIT",
+    install_requires=[
+      "requests>=2.10",
+      "pytest>=2.9",
+      "pytest-cov>=2.2",
+      "responses>=0.5"
+    ],
     keywords="recastai bot nlp")
