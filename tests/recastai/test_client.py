@@ -69,10 +69,10 @@ class TestClient(object):
     client = Client('testtoken')
 
     body = json.dumps({'results': {'source': "What's the weather in London?", 'intents': ['test'], 'sentences': [{'source': "What's the weather in London?", 'type': 'what', 'action': 'be', 'agent': 'the weather in london', 'polarity': 'positive', 'entities': {'location': [{'formated': 'London, London, Greater London, England, United Kingdom', 'lat': 51.5073509, 'lng': -0.1277583, 'raw': 'London'}]}}], 'language': 'en', 'version': '1.3.0', 'timestamp': '2016-05--1T17:33:00+02:00', 'status': 200}, 'message': 'Requests rendered with success.'})
-    responses.add(responses.POST, 'https://api.recast.ai/v1/request', body=body, status=200)
+    responses.add(responses.POST, 'https://test.com', body=body, status=200)
 
-    text_response = client.text_request('This is my text', token='tokentest', language='fr')
-    file_response = client.file_request(os.path.dirname(os.path.realpath(__file__)) + '/../utils/test.wav', token='tokentest', language='fr')
+    text_response = client.text_request('This is my text', token='tokentest', language='fr', endpoint='https://test.com')
+    file_response = client.file_request(os.path.dirname(os.path.realpath(__file__)) + '/../utils/test.wav', token='tokentest', language='fr', endpoint='https://test.com')
 
     assert(type(text_response) == Response)
     assert(type(file_response) == Response)

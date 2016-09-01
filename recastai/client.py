@@ -21,12 +21,13 @@ class Client(object):
       raise RecastError("Token is missing")
 
     language = options.get('language') or self.language
+    endpoint = options.get('endpoint') or Utils.API_ENDPOINT
 
     body = {'text': text}
     if language is not None:
       body['language'] = language
 
-    response = requests.post(Utils.API_ENDPOINT,
+    response = requests.post(endpoint,
                              params=body,
                              headers={'Authorization': "Token " + token})
     if response.status_code != requests.codes.ok:
@@ -43,13 +44,14 @@ class Client(object):
       raise RecastError("Token is missing")
 
     language = options.get('language') or self.language
+    endpoint = options.get('endpoint') or Utils.API_ENDPOINT
 
     file = open(file, 'rb') if (type(file) is str) else file
     body = {'voice': file}
     if language is not None:
       body['language'] = language
 
-    response = requests.post(Utils.API_ENDPOINT,
+    response = requests.post(endpoint,
                              files=body,
                              headers={'Authorization': "Token " + token})
     if response.status_code != requests.codes.ok:
