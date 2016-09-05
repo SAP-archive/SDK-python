@@ -54,9 +54,11 @@ class TestResponse(object):
     assert(response.is_location() == False)
     assert(response.is_number() == False)
     assert(response.is_negated() == False)
+    assert(response.is_vpositive() == False)
     assert(response.is_positive() == False)
     assert(response.is_neutral() == True)
     assert(response.is_negative() == False)
+    assert(response.is_vnegative() == False)
 
   def test_missing_array(self):
     response = Response(json.dumps({'results': {'source': 'What is the weather in London tomorrow? And in Paris?', 'intents': [], 'act': 'wh-query', 'type': 'desc:desc', 'negated': 0, 'sentiment': 'neutral', 'entities': {'action': [{'agent': 'the weather in London', 'tense': 'present', 'raw': 'is', 'confidence': 0.89}], 'location': [{'formated': 'London, London, Greater London, England, United Kingdom', 'lat': 51.5073509, 'lng': -0.1277583, 'raw': 'London', 'confidence': 0.97}, {'formated': 'Paris, Paris, Île-de-France, France', 'lat': 48.856614, 'lng': 2.3522219, 'raw': 'Paris', 'confidence': 0.83}], 'datetime': [{'value': '2016-07-11T10:00:00+00:00', 'raw': 'tomorrow', 'confidence': 0.95}]}, 'language': 'en', 'version': '2.0.0', 'timestamp': '2016-07-10T23:17:59+02:00', 'status': 200}, 'message': 'Requests rendered with success'}))

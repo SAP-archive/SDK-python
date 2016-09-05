@@ -79,6 +79,9 @@ class Response(object):
   def is_negated(self):
     return False if self.negated == 0 else True
 
+  def is_vpositive(self):
+    return self.sentiment == Utils.SENTIMENT_VPOSITIVE
+
   def is_positive(self):
     return self.sentiment == Utils.SENTIMENT_POSITIVE
 
@@ -87,3 +90,6 @@ class Response(object):
 
   def is_negative(self):
     return self.sentiment == Utils.SENTIMENT_NEGATIVE
+
+  def is_vnegative(self):
+    return self.sentiment == Utils.SENTIMENT_VNEGATIVE

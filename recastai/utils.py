@@ -27,6 +27,8 @@ class Utils(object):
   TYPE_NUMBER = 'num:'
 
   """Sentiment constants"""
+  SENTIMENT_VPOSITIVE = 'vpositive'
   SENTIMENT_POSITIVE = 'positive'
   SENTIMENT_NEUTRAL = 'neutral'
   SENTIMENT_NEGATIVE = 'negative'
+  SENTIMENT_VNEGATIVE = 'vnegative'
