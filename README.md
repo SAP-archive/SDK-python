@@ -131,9 +131,11 @@ The Recast.AI Response is generated after a call with the two previous methods a
 * is_number(\*) *Returns whether or not the sentence is asking for a number*
 * negated *Returns whether or not the sentence is negated*
 * sentiment *Returns the sentiment of the processed sentence*
+* is_vpositive(\*) *Returns whether or not the sentiment is very positive*
 * is_positive(\*) *Returns whether or not the sentiment is positive*
 * is_neutral(\*) *Returns whether or not the sentiment is neutral*
 * is_negative(\*) *Returns whether or not the sentiment is negative*
+* is_vnegative(\*) *Returns whether or not the sentiment is very negative*
 * entities *Returns all the entities*
 * get(name) *Returns the first entity matching -name-*
 * all(name) *Returns all the entities matching -name-*
