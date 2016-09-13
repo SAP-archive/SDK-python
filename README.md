@@ -129,7 +129,6 @@ The Recast.AI Response is generated after a call with the two previous methods a
 * is_human(\*) *Returns whether or not the sentence is asking for a human*
 * is_location(\*) *Returns whether or not the sentence is asking for a location*
 * is_number(\*) *Returns whether or not the sentence is asking for a number*
-* negated *Returns whether or not the sentence is negated*
 * sentiment *Returns the sentiment of the processed sentence*
 * is_vpositive(\*) *Returns whether or not the sentiment is very positive*
 * is_positive(\*) *Returns whether or not the sentiment is positive*

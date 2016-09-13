@@ -18,7 +18,6 @@ class Response(object):
     self.intents = [Intent(i) for i in response['intents']]
     self.act = response['act']
     self.type = response['type']
-    self.negated = response['negated']
     self.sentiment = response['sentiment']
     self.entities = [Entity(n, ee) for n, e in response['entities'].items() for ee in e]
     self.language = response['language']
@@ -75,9 +74,6 @@ class Response(object):
 
   def is_number(self):
     return Utils.TYPE_NUMBER in self.type
-
-  def is_negated(self):
-    return False if self.negated == 0 else True
 
   def is_vpositive(self):
     return self.sentiment == Utils.SENTIMENT_VPOSITIVE
