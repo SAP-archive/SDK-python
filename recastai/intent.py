@@ -3,5 +3,5 @@
 
 class Intent(object):
   def __init__(self, intent):
-    self.name = intent['name']
+    self.slug = intent['slug']
     self.confidence = intent['confidence']
