@@ -14,6 +14,7 @@ class Response(object):
     response = json.loads(response)
     response = response['results']
 
+    self.uuid = response['uuid']
     self.source = response['source']
     self.intents = [Intent(i) for i in response['intents']]
     self.act = response['act']
