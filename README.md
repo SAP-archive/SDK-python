@@ -22,7 +22,7 @@ This library is a pure Python interface to the [Recast.AI](https://recast.ai) AP
 From [pypi](https://pypi.python.org/pypi/pip)
 
 ```bash
-recastai==1.0.0
+recastai
 ```
 
 From [github](https://github.com)
