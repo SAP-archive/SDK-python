@@ -45,11 +45,19 @@ class Conversation(object):
   def joined_replies(self, sep=' '):
     return sep.join(self.replies)
 
-  def get_memory(key=None):
+  def get_memory(self, key=None):
     if key == None:
       return self.memory
 
-    return self.memory[key]
+    for entity in self.memory:
+      if (entity.name.lower() == key.lower()):
+        return entity
+
+  def intent(self):
+    try:
+      return self.intents[0]
+    except IndexError:
+      return None
 
   @classmethod
   def set_memory(cls, token, conversation_token, memory):

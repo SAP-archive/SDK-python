@@ -9,7 +9,8 @@ class Utils(object):
   VERSION = "{0}.{1}.{2}".format(MAJOR, MINOR, MICRO)
 
   """Endpoints"""
-  API_ENDPOINT = 'https://api.recast.ai/v2/request'
+  REQUEST_ENDPOINT = 'https://api.recast.ai/v2/request'
+  CONVERSE_ENDPOINT = 'https://api.recast.ai/v2/converse'
   WS_ENDPOINT = 'wss://api.recast.ai/v2/request'
 
   """Act constants"""

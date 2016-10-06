@@ -3,7 +3,7 @@
 from recastai import Intent
 
 
-class TestSentence(object):
+class TestIntent(object):
   def test_instanciable(self):
     Intent({'slug': 'weather', 'confidence': 0.67})
 
