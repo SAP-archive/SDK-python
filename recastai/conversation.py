@@ -46,7 +46,7 @@ class Conversation(object):
     return sep.join(self.replies)
 
   def get_memory(self, key=None):
-    if key == None:
+    if key is None:
       return self.memory
 
     for entity in self.memory:
