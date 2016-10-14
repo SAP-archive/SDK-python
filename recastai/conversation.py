@@ -19,7 +19,7 @@ class Conversation(object):
     self.uuid = response['uuid']
     self.source = response['source']
     self.replies = response['replies']
-    self.action  = Action(response['action'])
+    self.action  = Action(response['action']) if response['action'] else None
     self.next_actions = [Action(a) for a in response['next_actions']]
     self.memory = [Entity(n, e) for n, e in response['memory'].items() if e]
     self.entities = [Entity(n, ee) for n, e in response['entities'].items() for ee in e]
