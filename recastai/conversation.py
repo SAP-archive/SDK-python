@@ -67,7 +67,7 @@ class Conversation(object):
       json=body,
       headers={'Authorization': "Token {}".format(token)}
     )
-    if response.status_code != requests.code.ok:
+    if response.status_code != requests.codes.ok:
       raise RecastError.new(response.reason)
 
     response = json.loads(response)
@@ -84,7 +84,7 @@ class Conversation(object):
       json=body,
       headers={'Authorization': "Token {}".format(token) }
     )
-    if response.status_code != requests.code.ok:
+    if response.status_code != requests.codes.ok:
       raise RecastError.new(response.reason)
 
     response = json.loads(response)
@@ -99,7 +99,7 @@ class Conversation(object):
       json=body,
       headers={'Authorization': "Token {}".format(token)}
     )
-    if response.status_code != requests.code.ok:
+    if response.status_code != requests.codes.ok:
       raise RecastError.new(response.reason)
 
     response = json.loads(response)
