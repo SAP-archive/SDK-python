@@ -10,7 +10,7 @@ with open(path.join(here, 'README.md'), 'r', 'utf-8') as f:
 
 setup(
     name="recastai",
-    version="2.2.2",
+    version="2.2.3",
     packages=find_packages(),
     description="Recast.AI official SDK for python",
     long_description=readme,
