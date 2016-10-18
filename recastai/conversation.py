@@ -68,9 +68,9 @@ class Conversation(object):
       headers={'Authorization': "Token {}".format(token)}
     )
     if response.status_code != requests.codes.ok:
-      raise RecastError.new(response.reason)
+      raise RecastError(response.reason)
 
-    response = json.loads(response)
+    response = json.loads(response.text)
     response = response['results']
     return [Entity(n, e) for n, e in response['memory'].items() if e]
 
@@ -85,9 +85,10 @@ class Conversation(object):
       headers={'Authorization': "Token {}".format(token) }
     )
     if response.status_code != requests.codes.ok:
-      raise RecastError.new(response.reason)
+      raise RecastError(response.reason)
 
-    response = json.loads(response)
+    response = json.loads(response.text)
+    print(response)
     response = response['results']
     return [Entity(n, e) for n, e in response['memory'].items() if e]
 
@@ -100,8 +101,9 @@ class Conversation(object):
       headers={'Authorization': "Token {}".format(token)}
     )
     if response.status_code != requests.codes.ok:
-      raise RecastError.new(response.reason)
+      raise RecastError(response.reason)
 
-    response = json.loads(response)
+    response = json.loads(response.text)
+    print(response)
     response = response['results']
     return [Entity(n, e) for n, e in response['memory'].items() if e]
