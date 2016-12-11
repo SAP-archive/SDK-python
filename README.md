@@ -14,6 +14,8 @@ This module is a wrapper around the [Recast.AI](https://recast.ai) API, and allo
 
 ## Installation
 
+This library requires python3.5.
+
 ```bash
 pip install recastai
 ```
