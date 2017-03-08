@@ -1,10 +1,9 @@
 # coding: utf-8
 
-from .analyze import Analyze
-from .converse import Converse
+from .message import Message
 
 
-class RequestAPI(Analyze, Converse):
+class Connect(Message):
   def __init__(self, token=None, language=None, proxy=None):
     self.token = token
     self.language = language

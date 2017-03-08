@@ -1,5 +1,5 @@
 # coding: utf-8
 
-from .connect_api import ConnectAPI
+from .connect import Connect
 
-__all__ = ['ConnectAPI']
+__all__ = ['Connect']

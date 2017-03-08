@@ -1,5 +1,5 @@
 # coding: utf-8
 
-from .request_api import RequestAPI
+from .request import Request
 
-__all__ = ['RequestAPI']
+__all__ = ['Request']

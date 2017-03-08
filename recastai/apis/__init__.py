@@ -1,6 +1,6 @@
 # coding: utf-8
 
-from .connect import ConnectAPI
-from .request import RequestAPI
+from .connect import Connect
+from .request import Request
 
-__all__ = ['ConnectAPI', 'RequestAPI']
+__all__ = ['Connect', 'Request']
