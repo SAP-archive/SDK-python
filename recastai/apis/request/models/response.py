@@ -1,17 +1,16 @@
 # coding: utf-8
 
-import json
-
 from .intent import Intent
 from .entity import Entity
-from .utils import Utils
+
+from ..utils import Utils
 
 
-class Response(object):
+class Response():
   def __init__(self, response):
-    self.raw = response
+    self.raw = response.text
 
-    response = json.loads(response)
+    response = response.json()
     response = response['results']
 
     self.uuid = response['uuid']
@@ -26,6 +25,7 @@ class Response(object):
     self.timestamp = response['timestamp']
     self.status = response['status']
 
+  @property
   def intent(self):
     try:
       return self.intents[0]
@@ -46,47 +46,62 @@ class Response(object):
 
     return entities
 
+  @property
   def is_assert(self):
     return self.act == Utils.ACT_ASSERT
 
+  @property
   def is_command(self):
     return self.act == Utils.ACT_COMMAND
 
+  @property
   def is_wh_query(self):
     return self.act == Utils.ACT_WH_QUERY
 
+  @property
   def is_yn_query(self):
     return self.act == Utils.ACT_YN_QUERY
 
+  @property
   def is_abbreviation(self):
     return Utils.TYPE_ABBREVIATION in self.type
 
+  @property
   def is_entity(self):
     return Utils.TYPE_ENTITY in self.type
 
+  @property
   def is_description(self):
     return Utils.TYPE_DESCRIPTION in self.type
 
+  @property
   def is_human(self):
     return Utils.TYPE_HUMAN in self.type
 
+  @property
   def is_location(self):
     return Utils.TYPE_LOCATION in self.type
 
+  @property
   def is_number(self):
     return Utils.TYPE_NUMBER in self.type
 
+  @property
   def is_vpositive(self):
     return self.sentiment == Utils.SENTIMENT_VPOSITIVE
 
+  @property
   def is_positive(self):
     return self.sentiment == Utils.SENTIMENT_POSITIVE
 
+  @property
   def is_neutral(self):
     return self.sentiment == Utils.SENTIMENT_NEUTRAL
 
+  @property
   def is_negative(self):
     return self.sentiment == Utils.SENTIMENT_NEGATIVE
 
+  @property
   def is_vnegative(self):
     return self.sentiment == Utils.SENTIMENT_VNEGATIVE

@@ -1,25 +1,29 @@
 # coding: utf-8
 
-import json
 import requests
 
 from .action import Action
 from .intent import Intent
 from .entity import Entity
-from .errors import RecastError
-from .utils import Utils
 
-class Conversation(object):
-  def __init__(self, response):
-    self.raw = response
+from ..utils import Utils
 
-    response = json.loads(response)
+from ...errors import RecastError
+
+
+class Conversation():
+  def __init__(self, response, token):
+    self.token = token
+
+    self.raw = response.text
+
+    response = response.json()
     response = response['results']
 
     self.uuid = response['uuid']
     self.source = response['source']
     self.replies = response['replies']
-    self.action  = Action(response['action']) if response['action'] else None
+    self.action = Action(response['action']) if response['action'] else None
     self.next_actions = [Action(a) for a in response['next_actions']]
     self.memory = [Entity(n, e) for n, e in response['memory'].items() if e]
     self.entities = [Entity(n, ee) for n, e in response['entities'].items() for ee in e]
@@ -30,12 +34,14 @@ class Conversation(object):
     self.timestamp = response['timestamp']
     self.status = response['status']
 
+  @property
   def reply(self):
     try:
       return self.replies[0]
     except IndexError:
       return None
 
+  @property
   def next_action(self):
     try:
       return self.next_actions[0]
@@ -53,57 +59,55 @@ class Conversation(object):
       if (entity.name.lower() == key.lower()):
         return entity
 
+    return None
+
+  @property
   def intent(self):
     try:
       return self.intents[0]
     except IndexError:
       return None
 
-  @classmethod
-  def set_memory(cls, token, conversation_token, memory):
-    body = { 'conversation_token': conversation_token, 'memory': memory }
+  def set_memory(self, memory):
+    body = {'conversation_token': self.conversation_token, 'memory': memory}
     response = requests.put(
       Utils.CONVERSE_ENDPOINT,
       json=body,
-      headers={'Authorization': "Token {}".format(token)}
+      headers={'Authorization': "Token {}".format(self.token)}
     )
     if response.status_code != requests.codes.ok:
-      raise RecastError(response.reason)
+      raise RecastError(response.json()['message'])
 
-    response = json.loads(response.text)
+    response = response.json()
     response = response['results']
     return [Entity(n, e) for n, e in response['memory'].items() if e]
 
-  @classmethod
-  def reset_memory(cls, token, conversation_token, key=None):
-    body = {'conversation_token': conversation_token}
+  def reset_memory(self, key=None):
+    body = {'conversation_token': self.conversation_token}
     if key:
-      body['memory'] = { key: None }
+      body['memory'] = {key: None}
     response = requests.put(
       Utils.CONVERSE_ENDPOINT,
       json=body,
-      headers={'Authorization': "Token {}".format(token) }
+      headers={'Authorization': "Token {}".format(self.token)}
     )
     if response.status_code != requests.codes.ok:
-      raise RecastError(response.reason)
+      raise RecastError(response.json()['message'])
 
-    response = json.loads(response.text)
-    print(response)
+    response = response.json()
     response = response['results']
     return [Entity(n, e) for n, e in response['memory'].items() if e]
 
-  @classmethod
-  def reset_conversation(cls, token, conversation_token):
-    body = {'conversation_token': conversation_token}
+  def reset_conversation(self):
+    body = {'conversation_token': self.conversation_token}
     response = requests.delete(
       Utils.CONVERSE_ENDPOINT,
       json=body,
-      headers={'Authorization': "Token {}".format(token)}
+      headers={'Authorization': "Token {}".format(self.token)}
     )
     if response.status_code != requests.codes.ok:
-      raise RecastError(response.reason)
+      raise RecastError(response.json()['message'])
 
-    response = json.loads(response.text)
-    print(response)
+    response = response.json()
     response = response['results']
     return [Entity(n, e) for n, e in response['memory'].items() if e]
