@@ -10,7 +10,7 @@ from ..errors import RecastError
 
 class Message():
   def parse_message(self, request):
-    return Msg(request.body)
+    return Msg(request.body, self.token)
 
   def send_message(self, payload, conversation_id):
     response = requests.post(
