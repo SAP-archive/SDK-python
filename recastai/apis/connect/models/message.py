@@ -1,5 +1,6 @@
 # coding: utf-8
 
+import json
 import requests
 
 from ..utils import Utils
@@ -7,23 +8,24 @@ from ..utils import Utils
 from ...errors import RecastError
 
 class Message():
-  def __init__(self, response, token):
+  def __init__(self, request, token):
     self.token = token
 
-    self.raw = response.text
-
-    response = response.json()
-
-    for k, v in response.items():
+    request = json.loads(request)
+    for k, v in request.items():
       setattr(self, k, v)
 
-    self.content = response['message']['attachement']['content']
-    self.type = response['message']['attachement']['type']
-    self.conversation_id = response['message']['conversation_id']
+    self.content = request['message']['attachement']['content']
+    self.type = request['message']['attachement']['type']
+    self.conversation_id = request['message']['conversation_id']
+
     self.replies = []
 
-  def add_reply(self, reply):
-    self.replies.append(reply)
+  def add_reply(self, replies):
+    if type(replies) is str or type(replies) is bytes:
+      replies = [replies]
+
+    self.replies = self.replies + replies
 
   def reply(self, replies=[]):
     if type(replies) is str or type(replies) is bytes:
