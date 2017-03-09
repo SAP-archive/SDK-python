@@ -26,9 +26,12 @@ class Message():
     self.replies.append(reply)
 
   def reply(self, replies=[]):
+    if type(replies) is str or type(replies) is bytes:
+      replies = [replies]
+
     response = requests.post(
       Utils.CONVERSATION_ENDPOINT + self.conversation_id + '/messages',
-      json={'messages': [*self.replies, *replies]},
+      json={'messages': self.replies + replies},
       headers={'Authorization': "Token {}".format(token)}
     )
     if response.status_code != requests.codes.ok:
