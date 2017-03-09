@@ -1,6 +1,8 @@
-from setuptools import setup, find_packages
-from codecs import open
+# coding: utf-8
+
 from os import path
+from codecs import open
+from setuptools import setup, find_packages
 
 here = path.abspath(path.dirname(__file__))
 
@@ -10,7 +12,7 @@ with open(path.join(here, 'README.md'), 'r', 'utf-8') as f:
 
 setup(
     name="recastai",
-    version="2.2.4",
+    version="3.0.0",
     packages=find_packages(),
     description="Recast.AI official SDK for python",
     long_description=readme,
