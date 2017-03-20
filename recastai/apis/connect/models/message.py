@@ -21,7 +21,7 @@ class Message():
 
     self.replies = []
 
-  def add_reply(self, replies):
+  def add_replies(self, replies):
     if type(replies) is str or type(replies) is bytes:
       replies = [replies]
 
