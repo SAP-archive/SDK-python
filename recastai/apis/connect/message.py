@@ -15,21 +15,21 @@ class Message():
   def send_message(self, payload, conversation_id):
     response = requests.post(
       Utils.CONVERSATION_ENDPOINT + conversation_id + '/messages',
-      json=payload, # Is this ok?
+      json={'messages': payload},
       headers={'Authorization': "Token {}".format(token)}
     )
-    if response.status_code != requests.codes.ok:
-      raise RecastError(response.reason)
+    if response.status_code != requests.codes.created:
+      raise RecastError(response.json()['message'])
 
     return response
 
   def broadcast_message(self, payload):
     response = requests.post(
       Utils.MESSAGE_ENDPOINT,
-      json=payload, # TODO: is this ok?
+      json={'messages': payload},
       headers={'Authorization': "Token {}".format(token)}
     )
-    if response.status_code != requests.codes.ok:
-      raise RecastError(response.reason)
+    if response.status_code != requests.codes.created:
+      raise RecastError(response.json()['message'])
 
     return response

@@ -15,9 +15,9 @@ class Message():
     for k, v in request.items():
       setattr(self, k, v)
 
+    self.conversation_id = request['message']['conversation']
     self.content = request['message']['attachment']['content']
     self.type = request['message']['attachment']['type']
-    self.conversation_id = request['message']['conversation']
 
     self.replies = []
 
@@ -30,12 +30,13 @@ class Message():
   def reply(self, replies=[]):
     if type(replies) is str or type(replies) is bytes:
       replies = [replies]
+
     response = requests.post(
       Utils.CONVERSATION_ENDPOINT + self.conversation_id + '/messages',
       json={'messages': self.replies + replies},
       headers={'Authorization': "Token {}".format(self.token)}
     )
     if response.status_code != requests.codes.created:
-      raise RecastError(response.reason)
+      raise RecastError(response.json()['message'])
 
     return response
