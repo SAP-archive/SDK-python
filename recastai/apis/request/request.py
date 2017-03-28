@@ -1,10 +1,10 @@
 # coding: utf-8
 
-from .analyze import Analyze
+from .analyse import Analyse
 from .converse import Converse
 
 
-class Request(Analyze, Converse):
+class Request(Analyse, Converse):
   def __init__(self, token=None, language=None, proxy=None):
     self.token = token
     self.language = language

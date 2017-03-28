@@ -9,8 +9,8 @@ from .utils import Utils
 from ..errors import RecastError
 
 
-class Analyze():
-  def analyze_text(self, text, token=None, language=None):
+class Analyse():
+  def analyse_text(self, text, token=None, language=None):
     token = token or self.token
     if token is None:
       raise RecastError("Token is missing")
@@ -32,7 +32,7 @@ class Analyze():
 
     return Response(response)
 
-  def analyze_file(self, filename, token=None, language=None):
+  def analyse_file(self, filename, token=None, language=None):
     token = token or self.token
     if token is None:
       raise RecastError("Token is missing")
