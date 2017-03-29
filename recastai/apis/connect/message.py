@@ -12,7 +12,11 @@ class Message():
   def parse_message(self, request):
     return Msg(request.get_data())
 
-  def send_message(self, payload, conversation_id):
+  def send_message(self, payload, conversation_id, token=None):
+    token = token or self.token
+    if token is None:
+      raise RecastError("Token is missing")
+
     response = requests.post(
       Utils.CONVERSATION_ENDPOINT + conversation_id + '/messages',
       json={'messages': payload},
@@ -23,7 +27,11 @@ class Message():
 
     return response
 
-  def broadcast_message(self, payload):
+  def broadcast_message(self, payload, token=None):
+    token = token or self.token
+    if token is None:
+      raise RecastError("Token is missing")
+
     response = requests.post(
       Utils.MESSAGE_ENDPOINT,
       json={'messages': payload},
