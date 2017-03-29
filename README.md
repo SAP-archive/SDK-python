@@ -15,7 +15,7 @@ This module is a wrapper around the [Recast.AI](https://recast.ai) API, and allo
 
 ## Installation
 
-This library supports both python 2.7+, 3.5+.
+This library supports both `python 2.7+` and `python 3.5+`.
 
 ```bash
 pip install recastai
