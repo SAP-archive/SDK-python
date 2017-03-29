@@ -11,5 +11,5 @@ class TestAction(object):
     action = Action({'slug': 'greetings', 'done': True, 'reply': 'Hello there!'})
 
     assert(action.slug == 'greetings')
-    assert(action.done == True)
+    assert(action.done is True)
     assert(action.reply == 'Hello there!')

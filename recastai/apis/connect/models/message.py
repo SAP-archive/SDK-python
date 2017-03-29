@@ -8,6 +8,7 @@ from ..utils import Utils
 
 from ...errors import RecastError
 
+
 class Message():
   def __init__(self, request):
     request = json.loads(request)
