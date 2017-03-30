@@ -27,7 +27,7 @@ Using the entire SDK:
 ```python
 import recastai
 
-client = recastai.RecastAI('YOUR_TOKEN')
+client = recastai.Client('YOUR_TOKEN')
 ```
 
 Extracting one single API:
