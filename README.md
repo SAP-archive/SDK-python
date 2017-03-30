@@ -1,8 +1,8 @@
-# Recast.AI - SDK Python
-
-[logo]: https://github.com/RecastAI/SDK-Python/blob/master/misc/logo-inline.png "Recast.AI"
+[logo]: https://cdn.recast.ai/brand/recast-ai-logo-inline.png "Recast.AI"
 
 ![alt text][logo]
+
+# Recast.AI - SDK Python
 
 Recast.AI official SDK in Python
 
