@@ -17,7 +17,6 @@ class Converse():
 
     language = language or self.language
 
-    # Build the body
     body = {'text': text}
     if language is not None:
       body['language'] = language
@@ -32,7 +31,7 @@ class Converse():
       headers={'Authorization': "Token {}".format(token)}
     )
     if response.status_code != requests.codes.ok:
-      raise RecastError(response.json()['message'])
+      raise RecastError(response.json().get('message', ''))
 
     return Conversation(response, token)
 
@@ -45,7 +44,6 @@ class Converse():
 
     filename = open(filename, 'rb') if not isinstance(filename, io.IOBase) else filename
 
-    # Build the body
     body = {'voice': filename}
     if language is not None:
       body['language'] = language
@@ -60,6 +58,6 @@ class Converse():
       headers={'Authorization': "Token {}".format(token)}
     )
     if response.status_code != requests.codes.ok:
-      raise RecastError(response.json()['message'])
+      raise RecastError(response.json().get('message', ''))
 
     return Conversation(response)

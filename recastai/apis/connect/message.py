@@ -2,7 +2,7 @@
 
 import requests
 
-from .models import Message as Msg
+from .models import Message as Model
 from .utils import Utils
 
 from ..errors import RecastError
@@ -10,34 +10,36 @@ from ..errors import RecastError
 
 class Message():
   def parse_message(self, request):
-    return Msg(request.get_data())
+    return Model(request.get_data())
 
-  def send_message(self, payload, conversation_id, token=None):
+  def send_message(self, messages, conversation_id, token=None):
     token = token or self.token
     if token is None:
       raise RecastError("Token is missing")
 
+    url = Utils.CONVERSATION_ENDPOINT % (conversation_id) + '/messages'
     response = requests.post(
-      Utils.CONVERSATION_ENDPOINT + conversation_id + '/messages',
-      json={'messages': payload},
+      url,
+      json={'messages': messages},
       headers={'Authorization': "Token {}".format(token)}
     )
     if response.status_code != requests.codes.created:
-      raise RecastError(response.json()['message'])
+      raise RecastError(response.json().get('message'))
 
     return response
 
-  def broadcast_message(self, payload, token=None):
+  def broadcast_message(self, messages, token=None):
     token = token or self.token
     if token is None:
       raise RecastError("Token is missing")
 
+    url = Utils.MESSAGE_ENDPOINT % ('')
     response = requests.post(
-      Utils.MESSAGE_ENDPOINT,
-      json={'messages': payload},
+      url,
+      json={'messages': messages},
       headers={'Authorization': "Token {}".format(token)}
     )
     if response.status_code != requests.codes.created:
-      raise RecastError(response.json()['message'])
+      raise RecastError(response.json().get('message'))
 
     return response

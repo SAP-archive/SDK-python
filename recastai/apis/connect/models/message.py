@@ -2,11 +2,6 @@
 
 import re
 import json
-import requests
-
-from ..utils import Utils
-
-from ...errors import RecastError
 
 
 class Message():
