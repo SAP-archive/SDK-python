@@ -28,6 +28,9 @@ Using the entire SDK:
 import recastai
 
 client = recastai.Client('YOUR_TOKEN')
+
+client.request.analyse_text('Hi')
+client.connect.broadcast_message('Hi')
 ```
 
 Extracting one single API:
@@ -35,7 +38,10 @@ Extracting one single API:
 from recastai import Request, Connect
 
 request = Request('YOUR_TOKEN')
+request.analyse_text('Hi')
+
 connect = Connect('YOUR_TOKEN')
+connect.broadcast_message('Hi')
 ```
 
 ## More
