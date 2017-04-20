@@ -26,10 +26,12 @@ class Conversation():
     self.action = Action(response['action']) if response['action'] else None
     self.next_actions = [Action(a) for a in response['next_actions']]
     self.memory = [Entity(n, e) for n, e in response['memory'].items() if e]
+    self.sentiment = response['sentiment']
     self.entities = [Entity(n, ee) for n, e in response['entities'].items() for ee in e]
     self.intents = [Intent(i) for i in response['intents']]
     self.conversation_token = response['conversation_token']
     self.language = response['language']
+    self.processing_language = response['processing_language']
     self.version = response['version']
     self.timestamp = response['timestamp']
     self.status = response['status']
@@ -67,6 +69,26 @@ class Conversation():
       return self.intents[0]
     except IndexError:
       return None
+
+  @property
+  def is_vpositive(self):
+    return self.sentiment == Utils.SENTIMENT_VPOSITIVE
+
+  @property
+  def is_positive(self):
+    return self.sentiment == Utils.SENTIMENT_POSITIVE
+
+  @property
+  def is_neutral(self):
+    return self.sentiment == Utils.SENTIMENT_NEUTRAL
+
+  @property
+  def is_negative(self):
+    return self.sentiment == Utils.SENTIMENT_NEGATIVE
+
+  @property
+  def is_vnegative(self):
+    return self.sentiment == Utils.SENTIMENT_VNEGATIVE
 
   def set_memory(self, memory):
     body = {'conversation_token': self.conversation_token, 'memory': memory}

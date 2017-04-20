@@ -21,6 +21,7 @@ class Response():
     self.sentiment = response['sentiment']
     self.entities = [Entity(n, ee) for n, e in response['entities'].items() for ee in e]
     self.language = response['language']
+    self.processing_language = response['processing_language']
     self.version = response['version']
     self.timestamp = response['timestamp']
     self.status = response['status']
