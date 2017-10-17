@@ -29,7 +29,7 @@ class Analyse():
     if response.status_code != requests.codes.ok:
       raise RecastError(response.json().get('message', ''))
 
-    return Response(response)
+    return Response(response.json()['results'])
 
   def analyse_file(self, filename, token=None, language=None):
     token = token or self.token
@@ -52,4 +52,4 @@ class Analyse():
     if response.status_code != requests.codes.ok:
       raise RecastError(response.json().get('message', ''))
 
-    return Response(response)
+    return Response(response.json()['results'])

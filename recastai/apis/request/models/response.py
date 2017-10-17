@@ -8,11 +8,6 @@ from ..utils import Utils
 
 class Response():
   def __init__(self, response):
-    self.raw = response.text
-
-    response = response.json()
-    response = response['results']
-
     self.uuid = response['uuid']
     self.source = response['source']
     self.intents = [Intent(i) for i in response['intents']]
