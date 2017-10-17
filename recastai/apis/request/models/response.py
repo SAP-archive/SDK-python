@@ -5,9 +5,12 @@ from .entity import Entity
 
 from ..utils import Utils
 
+import json
+
 
 class Response():
   def __init__(self, response):
+    self.raw = json.dumps({'results': response})
     self.uuid = response['uuid']
     self.source = response['source']
     self.intents = [Intent(i) for i in response['intents']]
