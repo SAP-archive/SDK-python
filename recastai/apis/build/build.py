@@ -26,7 +26,7 @@ class Build:
     return wrapper
 
   @token_required
-  def dialog(self, conversation_id, msg, language=None):
+  def dialog(self, msg, conversation_id, language=None):
     if language is None:
       language = self.language
 
