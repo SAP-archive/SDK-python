@@ -48,7 +48,7 @@ class Build:
     response = requests.put(url, json=opts, headers=self.headers())
     if response.status_code != requests.codes.ok:
       raise RecastError(response.json().get('message'))
-    return response.json()['results']
+    return DialogConversation(response.json()['results'])
 
   @token_required
   def delete_conversation(self, user, bot, conversation_id):
