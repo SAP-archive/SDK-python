@@ -37,7 +37,7 @@ class Build:
     response = requests.post('{}/dialog'.format(Utils.BUILD_ENDPOINT), json=params, headers=self.headers())
     if response.status_code != requests.codes.ok:
       raise RecastError(response.json().get('message'))
-    json = response.json()
+    json = response.json()['results']
     return DialogResponse(json['messages'], json['conversation'], json['nlp'])
 
   @token_required
