@@ -6,22 +6,42 @@
 
 Recast.AI official SDK in Python
 
-## Synospis
+## Overview
 
 This module is a wrapper around the [Recast.AI](https://recast.ai) API, and allows you to:
-* [Analyse your text](https://github.com/RecastAI/SDK-Python/wiki/01---Analyse-text)
-* [Manage a conversation](https://github.com/RecastAI/SDK-Python/wiki/02---Manage-conversation)
-* [Receive and send messages](https://github.com/RecastAI/SDK-Python/wiki/03---Receive-and-send-messages)
+* Analyse your text
+* Manage a conversation
+* Receive and send messages
 
 ## Installation
 
+  #### Using pip
+
+Install from PyPi using [pip](http://www.pip-installer.org/en/latest/), a
+package manager for Python.
+
+    pip install recastai
+
+Don't have pip installed? Try installing it, by running this from the command
+line:
+
+    $ curl https://raw.github.com/pypa/pip/master/contrib/get-pip.py | python
+
+  #### With the source code
+
+You can [download the source code
+(ZIP)](https://github.com/recastAI/SDK-python/zipball/master "Recast.AI-python
+source code") for `RecastAI-python`, and then run:
+
+    python setup.py install
+
+You may need to run the above commands with `sudo`.
+
 This library supports both `python 2.7+` and `python 3.5+`.
 
-```bash
-pip install recastai
-```
-
 You can now use the sdk in your code.
+
+## Usage
 
 Using the entire SDK:
 ```python
