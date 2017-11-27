@@ -12,7 +12,6 @@ This module is a wrapper around the [Recast.AI](https://recast.ai) API, and allo
 * [Analyse your text](https://github.com/RecastAI/SDK-python/wiki/01-Analyse-Text)
 * [Manage a conversation](https://github.com/RecastAI/SDK-python/wiki/02-Manage-conversation)
 * [Receive and send messages](https://github.com/RecastAI/SDK-python/wiki/03-Receive-and-send-messages)
-* [Message Payload](https://github.com/RecastAI/SDK-python/wiki/04-Message-payload)
 
 ## Installation
 
