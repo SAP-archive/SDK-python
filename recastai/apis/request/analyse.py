@@ -30,26 +30,3 @@ class Analyse():
       raise RecastError(response.json().get('message', ''))
 
     return Response(response.json()['results'])
-
-  def analyse_file(self, filename, token=None, language=None):
-    token = token or self.token
-    if token is None:
-      raise RecastError("Token is missing")
-
-    language = language or self.language
-
-    filename = open(filename, 'rb') if not isinstance(filename, io.IOBase) else filename
-
-    body = {'voice': filename}
-    if language is not None:
-      body['language'] = language
-
-    response = requests.post(
-      Utils.REQUEST_ENDPOINT,
-      files=body,
-      headers={'Authorization': "Token {}".format(token)}
-    )
-    if response.status_code != requests.codes.ok:
-      raise RecastError(response.json().get('message', ''))
-
-    return Response(response.json()['results'])
