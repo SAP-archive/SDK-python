@@ -26,7 +26,12 @@ class Build:
     return wrapper
 
   @token_required
-  def dialog(self, msg, conversation_id, language=None):
+  def dialog(self, msg, conversation_id, language=None, **options):
+
+    memory = {} if options.get('memory') is None else memory = options.get('memory')
+    log_level = "" if options.get('log_level') is None else log_level = options.get('log_level')
+    proxy = {}if options.get('memory') is None else proxy = options.get('memory')
+
     if language is None:
       language = self.language
 
