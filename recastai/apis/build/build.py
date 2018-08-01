@@ -28,14 +28,14 @@ class Build:
   @token_required
   def dialog(self, msg, conversation_id, language=None, **options):
 
-    memory = {} if options.get('memory') is None else memory = options.get('memory')
-    log_level = "" if options.get('log_level') is None else log_level = options.get('log_level')
-    proxy = {}if options.get('memory') is None else proxy = options.get('memory')
+    memory = {} if options.get('memory') is None else options.get('memory')
+    log_level = "info" if options.get('log_level') is None else options.get('log_level')
+    proxy = {} if options.get('memory') is None else options.get('memory')
 
     if language is None:
       language = self.language
 
-    params = {'message': msg, 'conversation_id': conversation_id}
+    params = {'message': msg, 'conversation_id': conversation_id, 'memory': memory, 'log_level': log_level, 'proxy': proxy}
     if language is not None:
       params['language'] = language
 
