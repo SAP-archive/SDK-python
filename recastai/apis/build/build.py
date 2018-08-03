@@ -30,7 +30,7 @@ class Build:
 
     memory = {} if options.get('memory') is None else options.get('memory')
     log_level = "info" if options.get('log_level') is None else options.get('log_level')
-    proxy = {} if options.get('memory') is None else options.get('memory')
+    proxy = {} if options.get('proxy') is None else options.get('proxy')
 
     if language is None:
       language = self.language
@@ -39,11 +39,14 @@ class Build:
     if language is not None:
       params['language'] = language
 
+      if proxy:
+      response = requests.get(proxy)
     response = requests.post('{}/dialog'.format(Utils.BUILD_ENDPOINT), json=params, headers=self.headers())
     if response.status_code != requests.codes.ok:
       raise RecastError(response.json().get('message'))
     json = response.json()['results']
-    return DialogResponse(json['messages'], json['conversation'], json['nlp'])
+    json['logs']['logs'] = log_level
+    return DialogResponse(json['messages'], json['conversation'], json['nlp'], json['logs'])
 
   @token_required
   def update_conversation(self, user, bot, conversation_id, opts):
