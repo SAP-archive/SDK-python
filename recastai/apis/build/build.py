@@ -28,24 +28,23 @@ class Build:
   @token_required
   def dialog(self, msg, conversation_id, language=None, **options):
 
-    memory = {} if options.get('memory') is None else options.get('memory')
     log_level = "info" if options.get('log_level') is None else options.get('log_level')
     proxy = {} if options.get('proxy') is None else options.get('proxy')
 
     if language is None:
       language = self.language
 
-    params = {'message': msg, 'conversation_id': conversation_id, 'memory': memory, 'log_level': log_level, 'proxy': proxy}
+    params = {'message': msg, 'conversation_id': conversation_id, 'memory': memory, 'log_level': log_level}
+    if options.get('memory'):
+      params['memory'] = options['memory']
+
     if language is not None:
       params['language'] = language
 
-      if proxy:
-      response = requests.get(proxy)
-    response = requests.post('{}/dialog'.format(Utils.BUILD_ENDPOINT), json=params, headers=self.headers())
+    response = requests.post('{}/dialog'.format(Utils.BUILD_ENDPOINT), json=params, headers=self.headers(), proxies=proxy)
     if response.status_code != requests.codes.ok:
       raise RecastError(response.json().get('message'))
     json = response.json()['results']
-    json['logs']['logs'] = log_level
     return DialogResponse(json['messages'], json['conversation'], json['nlp'], json['logs'])
 
   @token_required
