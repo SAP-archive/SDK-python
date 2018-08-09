@@ -34,7 +34,7 @@ class Build:
     if language is None:
       language = self.language
 
-    params = {'message': msg, 'conversation_id': conversation_id, 'memory': memory, 'log_level': log_level}
+    params = {'message': msg, 'conversation_id': conversation_id, 'log_level': log_level}
     if options.get('memory'):
       params['memory'] = options['memory']
 
