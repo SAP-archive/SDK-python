@@ -78,7 +78,7 @@ You can follow us on Twitter at [@recastai](https://twitter.com/recastai) for up
 
 ## License
 
-Copyright (c) [2017] [Recast.AI](https://recast.ai)
+Copyright (c) [2018] [Recast.AI](https://recast.ai)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
