@@ -11,14 +11,14 @@ with open(path.join(here, 'README.md'), 'r', 'utf-8') as f:
     readme = f.read()
 
 setup(
-    name="recastai",
+    name="sapcai",
     version="4.0.0",
     packages=find_packages(),
-    description="Recast.AI official SDK for python",
+    description="SAP Conversational AI official SDK for python",
     long_description=readme,
     author="Paul Renvoise",
-    author_email="paul.renvoise@recast.ai",
-    url="https://github.com/RecastAI/sdk-python",
+    author_email="paul.renvoise@sap.com",
+    url="https://github.com/SAPConversationalAI/sdk-python",
     license="MIT",
     install_requires=[
       "requests>=2.10",
@@ -26,4 +26,4 @@ setup(
       "pytest-cov>=2.2",
       "responses>=0.5"
     ],
-    keywords="recastai bot nlp")
+    keywords="sapcai bot nlp")

@@ -1,9 +1,9 @@
 # coding: utf-8
 
 import json
-from recastai import Response
-from recastai import Intent
-from recastai import Entity
+from sapcai import Response
+from sapcai import Intent
+from sapcai import Entity
 
 
 class TestResponse(object):

@@ -5,7 +5,7 @@ import requests
 from .models import Message as Model
 from .utils import Utils
 
-from ..errors import RecastError
+from ..errors import SapcaiError
 
 
 class Message():
@@ -15,7 +15,7 @@ class Message():
   def send_message(self, messages, conversation_id, token=None):
     token = token or self.token
     if token is None:
-      raise RecastError("Token is missing")
+      raise SapcaiError("Token is missing")
 
     url = Utils.CONVERSATION_ENDPOINT % (conversation_id) + '/messages'
     response = requests.post(
@@ -24,14 +24,14 @@ class Message():
       headers={'Authorization': "Token {}".format(token)}
     )
     if response.status_code != requests.codes.created:
-      raise RecastError(response.json().get('message'))
+      raise SapcaiError(response.json().get('message'))
 
     return response
 
   def broadcast_message(self, messages, token=None):
     token = token or self.token
     if token is None:
-      raise RecastError("Token is missing")
+      raise SapcaiError("Token is missing")
 
     url = Utils.MESSAGE_ENDPOINT % ('')
     response = requests.post(
@@ -40,6 +40,6 @@ class Message():
       headers={'Authorization': "Token {}".format(token)}
     )
     if response.status_code != requests.codes.created:
-      raise RecastError(response.json().get('message'))
+      raise SapcaiError(response.json().get('message'))
 
     return response

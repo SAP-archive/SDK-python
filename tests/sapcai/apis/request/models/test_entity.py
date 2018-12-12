@@ -1,6 +1,6 @@
 # coding: utf-8
 
-from recastai import Entity
+from sapcai import Entity
 
 
 class TestEntity(object):

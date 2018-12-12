@@ -1,17 +1,17 @@
-[logo]: https://cdn.recast.ai/brand/recast-ai-logo-inline.png "Recast.AI"
+[logo]: https://cdn.cai.tool.sap/brand/sapcai/sap-cai-black.svg "SAP Conversational AI"
 
 ![alt text][logo]
 
-# Recast.AI - SDK Python
+# SAP Conversational AI - SDK Python
 
-Recast.AI official SDK in Python
+SAP Conversational AI official SDK in Python
 
 ## Overview
 
-This module is a wrapper around the [Recast.AI](https://recast.ai) API, and allows you to:
-* [Analyse your text](https://github.com/RecastAI/SDK-python/wiki/01-Analyse-Text)
-* [Manage a conversation](https://github.com/RecastAI/SDK-python/wiki/02-Manage-conversation)
-* [Receive and send messages](https://github.com/RecastAI/SDK-python/wiki/03-Receive-and-send-messages)
+This module is a wrapper around the [SAP Conversational AI](https://cai.tool.sap) API, and allows you to:
+* [Analyse your text](https://github.com/SAPConversationalAI/SDK-python/wiki/01-Analyse-Text)
+* [Manage a conversation](https://github.com/SAPConversationalAI/SDK-python/wiki/02-Manage-conversation)
+* [Receive and send messages](https://github.com/SAPConversationalAI/SDK-python/wiki/03-Receive-and-send-messages)
 
 ## Installation
 
@@ -20,7 +20,7 @@ This module is a wrapper around the [Recast.AI](https://recast.ai) API, and allo
 Install from PyPi using [pip](http://www.pip-installer.org/en/latest/), a
 package manager for Python.
 
-    pip install recastai
+    pip install sapcai
 
 Don't have pip installed? Try installing it, by running this from the command
 line:
@@ -30,8 +30,8 @@ line:
   #### With the source code
 
 You can [download the source code
-(ZIP)](https://github.com/recastAI/SDK-python/zipball/master "Recast.AI-python
-source code") for `RecastAI-python`, and then run:
+(ZIP)](https://github.com/SAPConversationalAI/SDK-python/zipball/master "SAP Conversational AI-python
+source code") for `SAPConversationalAI-python`, and then run:
 
     python setup.py install
 
@@ -39,15 +39,15 @@ You may need to run the above commands with `sudo`.
 
 This library supports both `python 2.7+` and `python 3.5+`.
 
-You can now use the sdk in your code.
+You can now use the SDK in your code.
 
 ## Usage
 
 Using the entire SDK:
 ```python
-import recastai
+import sapcai
 
-client = recastai.Client('YOUR_TOKEN')
+client = sapcai.Client('YOUR_TOKEN')
 
 client.request.analyse_text('Hi')
 client.connect.broadcast_message('Hi')
@@ -55,7 +55,7 @@ client.connect.broadcast_message('Hi')
 
 Extracting one single API:
 ```python
-from recastai import Request, Connect
+from sapcai import Request, Connect
 
 request = Request('YOUR_TOKEN')
 request.analyse_text('Hi')
@@ -66,19 +66,19 @@ connect.broadcast_message('Hi')
 
 ## More
 
-You can view the whole API reference at [man.recast.ai](https://man.recast.ai).
+You can view the whole API reference at [cai.tool.sap/docs/api-reference](https://cai.tool.sap/docs/api-reference).
 
 
 ## Author
 
-Paul Renvoisé, paul.renvoise@recast.ai, [@paulrenvoise](https://twitter.com/paulrenvoise)
+Paul Renvoisé, paul.renvoise@sap.com, [@paulrenvoise](https://twitter.com/paulrenvoise)
 
-You can follow us on Twitter at [@recastai](https://twitter.com/recastai) for updates and releases.
+You can follow us on Twitter at [@sapcai](https://twitter.com/sapcai) for updates and releases.
 
 
 ## License
 
-Copyright (c) [2018] [Recast.AI](https://recast.ai)
+Copyright (c) [2018] [SAP Conversational AI](https://cai.tool.sap)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

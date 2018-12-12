@@ -1,6 +1,6 @@
 # coding: utf-8
 
-from recastai import Intent
+from sapcai import Intent
 
 
 class TestIntent(object):
