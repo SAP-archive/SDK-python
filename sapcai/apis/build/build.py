@@ -51,7 +51,7 @@ class Build:
   def update_conversation(self, user, bot, version, conversation_id, opts):
     if 'memory' in opts and type(opts['memory']) is not dict:
       raise ValueError('Memory parameter must be a dict')
-    url = '{}/users/{}/bots/{}/versions/${}/builder/v1/conversation_states/{}'.format(Utils.BUILD_ENDPOINT, user, bot, version, conversation_id)
+    url = '{}/users/{}/bots/{}/versions/{}/builder/conversation_states/{}'.format(Utils.BUILD_ENDPOINT, user, bot, version, conversation_id)
     response = requests.put(url, json=opts, headers=self.headers())
     if response.status_code != requests.codes.ok:
       raise SapcaiError(response.json().get('message'))
@@ -59,7 +59,7 @@ class Build:
 
   @token_required
   def delete_conversation(self, user, bot, version, conversation_id):
-    url = '{}/users/{}/bots/{}/versions/${}/builder/v1/conversation_states/{}'.format(Utils.BUILD_ENDPOINT, user, bot, version, conversation_id)
+    url = '{}/users/{}/bots/{}/versions/{}/builder/conversation_states/{}'.format(Utils.BUILD_ENDPOINT, user, bot, version, conversation_id)
     response = requests.delete(url, headers=self.headers())
     if response.status_code != requests.codes.no_content:
       raise SapcaiError(response.json().get('message'))
@@ -67,7 +67,7 @@ class Build:
 
   @token_required
   def get_conversation(self, user, bot, version, conversation_id):
-    url = '{}/users/{}/bots/{}/versions/${}/builder/v1/conversation_states/{}'.format(Utils.BUILD_ENDPOINT, user, bot, version, conversation_id)
+    url = '{}/users/{}/bots/{}/versions/{}/builder/conversation_states/{}'.format(Utils.BUILD_ENDPOINT, user, bot, version, conversation_id)
     response = requests.get(url, headers=self.headers())
     if response.status_code != requests.codes.ok:
       raise SapcaiError(response.json().get('message'))
