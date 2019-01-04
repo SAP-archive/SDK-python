@@ -1,4 +1,4 @@
-[logo]: https://cdn.cai.tool.sap/brand/sapcai/sap-cai-black.svg "SAP Conversational AI"
+[logo]: https://cdn.cai.tools.sap/brand/sapcai/sap-cai-black.svg "SAP Conversational AI"
 
 ![alt text][logo]
 
@@ -8,7 +8,7 @@ SAP Conversational AI official SDK in Python
 
 ## Overview
 
-This module is a wrapper around the [SAP Conversational AI](https://cai.tool.sap) API, and allows you to:
+This module is a wrapper around the [SAP Conversational AI](https://cai.tools.sap) API, and allows you to:
 * [Analyse your text](https://github.com/SAPConversationalAI/SDK-python/wiki/01-Analyse-Text)
 * [Manage a conversation](https://github.com/SAPConversationalAI/SDK-python/wiki/02-Manage-conversation)
 * [Receive and send messages](https://github.com/SAPConversationalAI/SDK-python/wiki/03-Receive-and-send-messages)
@@ -66,19 +66,14 @@ connect.broadcast_message('Hi')
 
 ## More
 
-You can view the whole API reference at [cai.tool.sap/docs/api-reference](https://cai.tool.sap/docs/api-reference).
-
-
-## Author
-
-Paul Renvoisé, paul.renvoise@sap.com, [@paulrenvoise](https://twitter.com/paulrenvoise)
+You can view the whole API reference at [cai.tools.sap/docs/api-reference](https://cai.tools.sap/docs/api-reference).
 
 You can follow us on Twitter at [@sapcai](https://twitter.com/sapcai) for updates and releases.
 
 
 ## License
 
-Copyright (c) [2019] [SAP Conversational AI](https://cai.tool.sap)
+Copyright (c) [2019] [SAP Conversational AI](https://cai.tools.sap)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

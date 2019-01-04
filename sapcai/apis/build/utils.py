@@ -3,4 +3,4 @@
 
 class Utils():
   """Endpoints"""
-  BUILD_ENDPOINT = 'https://api.cai.tool.sap/build/v1'
+  BUILD_ENDPOINT = 'https://api.cai.tools.sap/build/v1'

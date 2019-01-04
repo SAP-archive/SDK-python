@@ -3,8 +3,8 @@
 
 class Utils():
   """Endpoints"""
-  REQUEST_ENDPOINT = 'https://api.cai.tool.sap/v2/request'
-  CONVERSE_ENDPOINT = 'https://api.cai.tool.sap/v2/converse'
+  REQUEST_ENDPOINT = 'https://api.cai.tools.sap/v2/request'
+  CONVERSE_ENDPOINT = 'https://api.cai.tools.sap/v2/converse'
 
   """Act constants"""
   ACT_ASSERT = 'assert'

@@ -16,8 +16,7 @@ setup(
     packages=find_packages(),
     description="SAP Conversational AI official SDK for python",
     long_description=readme,
-    author="Paul Renvoise",
-    author_email="paul.renvoise@sap.com",
+    author="SAP CAI team",
     url="https://github.com/SAPConversationalAI/sdk-python",
     license="MIT",
     install_requires=[
