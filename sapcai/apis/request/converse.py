@@ -6,14 +6,14 @@ import requests
 from .models import Conversation
 from .utils import Utils
 
-from ..errors import RecastError
+from ..errors import SapcaiError
 
 
 class Converse():
   def converse_text(self, text, token=None, language=None, conversation_token=None, memory=None):
     token = token or self.token
     if token is None:
-      raise RecastError("Token is missing")
+      raise SapcaiError("Token is missing")
 
     language = language or self.language
 
@@ -31,14 +31,14 @@ class Converse():
       headers={'Authorization': "Token {}".format(token)}
     )
     if response.status_code != requests.codes.ok:
-      raise RecastError(response.json().get('message', ''))
+      raise SapcaiError(response.json().get('message', ''))
 
     return Conversation(response, token)
 
   def converse_file(self, filename, token=None, language=None, conversation_token=None, memory=None):
     token = token or self.token
     if token is None:
-      raise RecastError("Token is missing")
+      raise SapcaiError("Token is missing")
 
     language = language or self.language
 
@@ -58,6 +58,6 @@ class Converse():
       headers={'Authorization': "Token {}".format(token)}
     )
     if response.status_code != requests.codes.ok:
-      raise RecastError(response.json().get('message', ''))
+      raise SapcaiError(response.json().get('message', ''))
 
     return Conversation(response)

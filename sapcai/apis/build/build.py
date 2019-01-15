@@ -6,7 +6,7 @@ from .utils import Utils
 from .dialog_conversation import DialogConversation
 from .dialog_response import DialogResponse
 
-from ..errors import RecastError
+from ..errors import SapcaiError
 
 
 class Build:
@@ -43,32 +43,32 @@ class Build:
 
     response = requests.post('{}/dialog'.format(Utils.BUILD_ENDPOINT), json=params, headers=self.headers(), proxies=proxy)
     if response.status_code != requests.codes.ok:
-      raise RecastError(response.json().get('message'))
+      raise SapcaiError(response.json().get('message'))
     json = response.json()['results']
     return DialogResponse(json['messages'], json['conversation'], json['nlp'], json['logs'])
 
   @token_required
-  def update_conversation(self, user, bot, conversation_id, opts):
+  def update_conversation(self, user, bot, version, conversation_id, opts):
     if 'memory' in opts and type(opts['memory']) is not dict:
       raise ValueError('Memory parameter must be a dict')
-    url = '{}/users/{}/bots/{}/builders/v1/conversation_states/{}'.format(Utils.BUILD_ENDPOINT, user, bot, conversation_id)
+    url = '{}/users/{}/bots/{}/versions/{}/builder/conversation_states/{}'.format(Utils.BUILD_ENDPOINT, user, bot, version, conversation_id)
     response = requests.put(url, json=opts, headers=self.headers())
     if response.status_code != requests.codes.ok:
-      raise RecastError(response.json().get('message'))
+      raise SapcaiError(response.json().get('message'))
     return DialogConversation(response.json()['results'])
 
   @token_required
-  def delete_conversation(self, user, bot, conversation_id):
-    url = '{}/users/{}/bots/{}/builders/v1/conversation_states/{}'.format(Utils.BUILD_ENDPOINT, user, bot, conversation_id)
+  def delete_conversation(self, user, bot, version, conversation_id):
+    url = '{}/users/{}/bots/{}/versions/{}/builder/conversation_states/{}'.format(Utils.BUILD_ENDPOINT, user, bot, version, conversation_id)
     response = requests.delete(url, headers=self.headers())
     if response.status_code != requests.codes.no_content:
-      raise RecastError(response.json().get('message'))
+      raise SapcaiError(response.json().get('message'))
     return True
 
   @token_required
-  def get_conversation(self, user, bot, conversation_id):
-    url = '{}/users/{}/bots/{}/builders/v1/conversation_states/{}'.format(Utils.BUILD_ENDPOINT, user, bot, conversation_id)
+  def get_conversation(self, user, bot, version, conversation_id):
+    url = '{}/users/{}/bots/{}/versions/{}/builder/conversation_states/{}'.format(Utils.BUILD_ENDPOINT, user, bot, version, conversation_id)
     response = requests.get(url, headers=self.headers())
     if response.status_code != requests.codes.ok:
-      raise RecastError(response.json().get('message'))
+      raise SapcaiError(response.json().get('message'))
     return DialogConversation(response.json()['results'])

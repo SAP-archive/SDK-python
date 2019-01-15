@@ -1,6 +1,6 @@
 # coding: utf-8
 
-from recastai import Action
+from sapcai import Action
 
 
 class TestAction(object):

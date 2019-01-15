@@ -8,7 +8,7 @@ from .entity import Entity
 
 from ..utils import Utils
 
-from ...errors import RecastError
+from ...errors import SapcaiError
 
 
 class Conversation():
@@ -98,7 +98,7 @@ class Conversation():
       headers={'Authorization': "Token {}".format(self.token)}
     )
     if response.status_code != requests.codes.ok:
-      raise RecastError(response.json().get('message', ''))
+      raise SapcaiError(response.json().get('message', ''))
 
     response = response.json()
     response = response['results']
@@ -114,7 +114,7 @@ class Conversation():
       headers={'Authorization': "Token {}".format(self.token)}
     )
     if response.status_code != requests.codes.ok:
-      raise RecastError(response.json().get('message', ''))
+      raise SapcaiError(response.json().get('message', ''))
 
     response = response.json()
     response = response['results']
@@ -128,7 +128,7 @@ class Conversation():
       headers={'Authorization': "Token {}".format(self.token)}
     )
     if response.status_code != requests.codes.ok:
-      raise RecastError(response.json().get('message', ''))
+      raise SapcaiError(response.json().get('message', ''))
 
     response = response.json()
     response = response['results']

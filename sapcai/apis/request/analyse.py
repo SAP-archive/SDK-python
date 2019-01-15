@@ -6,14 +6,14 @@ import requests
 from .models import Response
 from .utils import Utils
 
-from ..errors import RecastError
+from ..errors import SapcaiError
 
 
 class Analyse():
   def analyse_text(self, text, token=None, language=None):
     token = token or self.token
     if token is None:
-      raise RecastError("Token is missing")
+      raise SapcaiError("Token is missing")
 
     language = language or self.language
 
@@ -27,6 +27,6 @@ class Analyse():
       headers={'Authorization': "Token {}".format(token)}
     )
     if response.status_code != requests.codes.ok:
-      raise RecastError(response.json().get('message', ''))
+      raise SapcaiError(response.json().get('message', ''))
 
     return Response(response.json()['results'])

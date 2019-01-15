@@ -3,11 +3,11 @@
 import json
 import pytest
 import responses
-from recastai import Conversation
-from recastai import Action
-from recastai import Intent
-from recastai import Entity
-from recastai import RecastError
+from sapcai import Conversation
+from sapcai import Action
+from sapcai import Intent
+from sapcai import Entity
+from sapcai import SapcaiError
 
 
 class TestConversation(object):
@@ -64,7 +64,7 @@ class TestConversation(object):
   @responses.activate
   def test_set_memory(self):
     body = json.dumps({'results': {'status': 200, 'version': '2.1.1', 'timestamp': '2016-10-18T10:00:19.530Z', 'conversation_token': '9286499ddafc10e7832b0c5dfa215feb', 'memory': {'schedule': {'iso': '2016-10-10T09:00:00', 'chronology': 'past', 'accuracy': 'day', 'formatted': 'Monday, 10 October 2016 at 09:00:00 AM', 'confidence': 0.99, 'raw': 'yesterday'}, 'email': None, 'room-number': {'raw': '2'}, 'name': None}}, 'message': 'Converses rendered with success'})
-    responses.add(responses.PUT, 'https://api.recast.ai/v2/converse', body=body, status=200)
+    responses.add(responses.PUT, 'https://api.cai.tools.sap/v2/converse', body=body, status=200)
 
     response = Conversation.set_memory('testtoken', 'testconversationtoken', {'room-number': {'raw': '2'}})
 
@@ -75,7 +75,7 @@ class TestConversation(object):
   @responses.activate
   def test_reset_memory_key(self):
     body = json.dumps({'results': {'status': 200, 'version': '2.1.1', 'timestamp': '2016-10-18T10:00:19.530Z', 'conversation_token': '9286499ddafc10e7832b0c5dfa215feb', 'memory': {'schedule': {'iso': '2016-10-10T09:00:00', 'chronology': 'past', 'accuracy': 'day', 'formatted': 'Monday, 10 October 2016 at 09:00:00 AM', 'confidence': 0.99, 'raw': 'yesterday'}, 'email': None, 'room-number': None, 'name': None}}, 'message': 'Converses rendered with success'})
-    responses.add(responses.PUT, 'https://api.recast.ai/v2/converse', body=body, status=200)
+    responses.add(responses.PUT, 'https://api.cai.tools.sap/v2/converse', body=body, status=200)
     response = Conversation.reset_memory('testtoken', 'testconversationtoken', 'room-number')
 
     assert(type(response) == list)
@@ -85,7 +85,7 @@ class TestConversation(object):
   @responses.activate
   def test_reset_memory(self):
     body = json.dumps({'results': {'status': 200, 'version': '2.1.1', 'timestamp': '2016-10-18T10:00:19.530Z', 'conversation_token': '9286499ddafc10e7832b0c5dfa215feb', 'memory': {'schedule': None, 'email': None, 'room-number': None, 'name': None}}, 'message': 'Converses rendered with success'})
-    responses.add(responses.PUT, 'https://api.recast.ai/v2/converse', body=body, status=200)
+    responses.add(responses.PUT, 'https://api.cai.tools.sap/v2/converse', body=body, status=200)
     response = Conversation.reset_memory('testtoken', 'testconversationtoken')
     print(response)
 
@@ -95,7 +95,7 @@ class TestConversation(object):
   @responses.activate
   def test_reset_conversation(self):
     body = json.dumps({'results': {'status': 200, 'version': '2.1.1', 'timestamp': '2016-10-18T10:00:19.530Z', 'conversation_token': '9286499ddafc10e7832b0c5dfa215feb', 'memory': {'schedule': None, 'email': None, 'room-number': None, 'name': None}}, 'message': 'Converses rendered with success'})
-    responses.add(responses.DELETE, 'https://api.recast.ai/v2/converse', body=body, status=200)
+    responses.add(responses.DELETE, 'https://api.cai.tools.sap/v2/converse', body=body, status=200)
 
     response = Conversation.reset_conversation('testtoken', 'testconversationtoken')
     print(response)
@@ -106,17 +106,17 @@ class TestConversation(object):
   @responses.activate
   def test_bad_request(self):
     body = json.dumps({'results': None, 'message': 'Request is invalid'})
-    responses.add(responses.PUT, 'https://api.recast.ai/v2/converse', body=body, status=400)
-    responses.add(responses.DELETE, 'https://api.recast.ai/v2/converse', body=body, status=400)
+    responses.add(responses.PUT, 'https://api.cai.tools.sap/v2/converse', body=body, status=400)
+    responses.add(responses.DELETE, 'https://api.cai.tools.sap/v2/converse', body=body, status=400)
 
-    with pytest.raises(RecastError):
+    with pytest.raises(SapcaiError):
       Conversation.set_memory('testtoken', 'testconversationtoken', {'location': {'raw': 'Paris'}})
 
-    with pytest.raises(RecastError):
+    with pytest.raises(SapcaiError):
       Conversation.reset_memory('testtoken', 'testconversationtoken', 'location')
 
-    with pytest.raises(RecastError):
+    with pytest.raises(SapcaiError):
       Conversation.reset_memory('testtoken', 'testconversationtoken')
 
-    with pytest.raises(RecastError):
+    with pytest.raises(SapcaiError):
       Conversation.reset_conversation('testtoken', 'testconversationtoken')
